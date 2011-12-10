@@ -1,4 +1,10 @@
 TanczacyZRailsamiService::Application.routes.draw do
+  resources :resources
+
+  resources :services
+
+  resources :user_proxies
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  website: MyString
+  priority: 1
+  interval: 1
+
+two:
+  name: MyString
+  website: MyString
+  priority: 1
+  interval: 1
