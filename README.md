@@ -40,4 +40,9 @@ Wygląd jest już prawie gotowy do pocięcia i wrzucenia do repo
     rake db:migrate
     rake db:seed
     rails s
+##Zbieracze
+Głównym zadaniem aplikacji service jest pobieranie różnego rodzaju treści z serwisów społecznościowych. Zadanie to jest realizowane przez tzw. klasy Zbieraczy które zbierają dane z poszczególnych serwisów używając specyficznego API.
 
+Klasy zbieraczy zaimplementowane są w katalogu lib/collectors.
+
+Przed użyciem jakiegokolwiek zbieracza należy wyedytować plik konfiguracyjny znajdujacy się w config/initializers/collectors.rb
