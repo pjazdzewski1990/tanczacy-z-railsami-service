@@ -1,8 +1,8 @@
 # Base class for all collectors (shouldn't be instanced)
+# It's purpose is to provide reference for required methods in collectors
 class AbstractCollector
-  # It's purpose is to provide reference for required methods in collectors
-
-  # This method should retrieve data and store it in DB
+  # This method should retrieve resources for specified accounts and store them in DB
+  # accounts - Array of accounts to fetch resources from
   def collect(accounts)
     raise "Collect not implemented in #{self.class.name}"
   end 
@@ -15,6 +15,7 @@ class AbstractCollector
   # It also provides some helper methods for all collectors
 
   attr_accessor :settings
+
   # It allows to store some context data into database which 
   # will allow to continue work in exact same place during next "collect" 
   #
