@@ -5,7 +5,7 @@ class FacebookCollector < AbstractCollector
     Rails.logger.info "Facebook collect invoked"
 
     accounts.each do |account|
-      @fb.set_token account[:access_token]
+      @fb.set_token account[:auth_token]
       # Get last status timestamp
       @last_status_date = 100.days.ago.to_s
       data = @fb.selection.me.statuses.since(@last_status_date).info!
