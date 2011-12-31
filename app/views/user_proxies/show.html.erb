@@ -1,5 +1,30 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Service:</b>
+  <%= @user_proxy.service %>
+</p>
+
+<p>
+  <b>Uid:</b>
+  <%= @user_proxy.uid %>
+</p>
+
+<p>
+  <b>Token:</b>
+  <%= @user_proxy.token %>
+</p>
+
+<p>
+  <b>Refresh:</b>
+  <%= @user_proxy.refresh %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @user_proxy.date %>
+</p>
+
 
 <%= link_to 'Edit', edit_user_proxy_path(@user_proxy) %> |
 <%= link_to 'Back', user_proxies_path %>
