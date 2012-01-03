@@ -1,0 +1,28 @@
+development:
+  uri: "mongodb://taniec:SuperHasl0-99@ds029117.mongolab.com:29117/rails"
+#  host: "ds029117.mongolab.com"
+#  database: "taniec"
+#  port: 29117
+#  username: "taniec"
+#  password: "SuperHasl0-99"
+
+
+test:
+  uri: "mongodb://taniec:SuperHasl0-99@ds029117.mongolab.com:29117/rails"
+#  host: localhost
+#  database: tanczacy_z_railsami_service_test
+
+# set these environment variables on your prod server
+production:
+  uri: "mongodb://taniec:SuperHasl0-99@ds029117.mongolab.com:29117/rails"
+
+#  host: <%= ENV['MONGOID_HOST'] %>
+#  port: <%= ENV['MONGOID_PORT'] %>
+#  username: <%= ENV['MONGOID_USERNAME'] %>
+#  password: <%= ENV['MONGOID_PASSWORD'] %>
+#  database: <%= ENV['MONGOID_DATABASE'] %>
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019

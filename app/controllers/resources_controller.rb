@@ -8,10 +8,11 @@ class ResourcesController < ApplicationController
   # - jest problem z dekodowaniem MultiJson'a po stronie klienta
   def index
 	puts "index"
-    @resources = nil
+    @resources = Resource.all
 
     respond_to do |format|
       format.json { render json: @resources }
+	  format.html { render html: @resources }
     end
   end
 
@@ -38,6 +39,7 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @resource }
+	  format.html { render html: @resources }
     end
   end
 

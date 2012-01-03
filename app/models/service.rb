@@ -1,3 +1,4 @@
 class Service < ActiveResource::Base
-	has_many :resources
+  include Mongoid::Document
+  has_many :resources
 end

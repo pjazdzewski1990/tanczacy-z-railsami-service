@@ -8,6 +8,7 @@ gem 'rails', '3.1.1'
 gem 'sqlite3'
 
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -18,7 +19,9 @@ end
 
 gem 'jquery-rails'
 gem 'fbgraph'
-
+gem 'mongo'
+gem 'mongoid', '~> 2.3'
+gem 'bson_ext', '~> 1.4'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
