@@ -12,7 +12,7 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @resources }
-	  format.html { render html: @resources }
+#	  format.html { render html: @resources }
     end
   end
 
@@ -39,7 +39,7 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @resource }
-	  format.html { render html: @resources }
+#	  format.html { render html: @resources }
     end
   end
 
