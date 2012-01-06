@@ -5,11 +5,11 @@ class CollectorManager
   # This method should retrieve accounts which needs to be refreshed
   # for specified collector
   def get_accounts(collector, limit)
-    [
-      { 
-        auth_token: 'ENTER_VALID_AUTH_TOKEN_FOR_TEST_ACCOUNT'
-      }
-    ]
+    service = Service.where(name: collector).first
+    accounts = service.
+               user_proxies.
+               limit(limit).
+               order([:refresh_date, 'ASC'])
   end
 
   # Fetches resources for specified collectors

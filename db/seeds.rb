@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+facebook_service = Service.new({
+  name: 'facebook',
+  website: 'http://facebook.com',
+  prority: '',
+  interval: ''
+})
+facebook_service.save(validate: false)

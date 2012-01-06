@@ -5,4 +5,5 @@ class Service < ActiveResource::Base
   field :priority
   field :interval
   has_many :resources
+  has_many :user_proxies
 end

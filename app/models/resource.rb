@@ -5,8 +5,9 @@ class Resource
   field :title
   field :body
   field :link
-  field :published
+  field :published, type: 'DateTime'
+  field :uid
 
-  belongs_to :userProxy
+  belongs_to :user_proxy
   belongs_to :service
 end

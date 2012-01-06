@@ -30,13 +30,13 @@ class AbstractCollector
   
   def save_resources(resources)
     resources.each do |resource|
-      puts resource
+      resource.save validate: false
 
       Rails.logger.info(
       'Resource: ' +
-      resource[:created_at] +
+      resource.published.to_s +
       ' ' +
-      resource[:content])
+      resource.body.to_s)
     end
   end
 end
