@@ -27,6 +27,8 @@ class FacebookCollector < AbstractCollector
         end
       end
     end
+
+    accounts
   end
 
   def initialize(settings)

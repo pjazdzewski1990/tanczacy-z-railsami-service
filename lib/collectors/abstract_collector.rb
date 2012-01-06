@@ -3,6 +3,7 @@
 class AbstractCollector
   # This method should retrieve resources for specified accounts and store them in DB
   # accounts - Array of accounts to fetch resources from
+  # Should return collection of account which were successfully refreshed
   def collect(accounts)
     raise "Collect not implemented in #{self.class.name}"
   end 

@@ -17,12 +17,16 @@ class CollectorManager
     collectors.each do |collector_name|
       collector = @collectors[collector_name]
       accounts = get_accounts collector_name, collector.settings[:request_limit]
-      failed_accounts = collector.collect accounts
+      success_accounts = collector.collect accounts
+      failed_accounts_count = accounts.size - success_accounts.size
 
-      if(!failed_accounts.empty?)
-        Rails.logger.error "Failed to fetch resources from #{failed_accounts.size} accounts"
-      else
-        Rails.logger.info "Successfully fetched all resources from #{accounts.size} accounts"
+      if(failed_accounts_count > 0)
+        Rails.logger.error "Failed to fetch resources from #{failed_accounts_count} accounts"
+      end
+    
+      success_accounts.each do |a|
+          a.refresh_date = DateTime.now
+          a.save validate: false
       end
     end
   end
