@@ -7,9 +7,6 @@ gem 'rails', '3.1.1'
 
 gem 'sqlite3'
 
-gem 'whenever', :require => false
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
