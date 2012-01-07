@@ -1,9 +1,9 @@
 class UserProxy < ActiveResource::Base
   include Mongoid::Document
-  field :uid
-  field :token
+  field :uid, type: 'String'
+  field :token, type: 'String'
   field :token_expires_at, type: 'DateTime'
-  field :refresh_token
+  field :refresh_token, type: 'String'
   field :refresh_date, type: 'DateTime'
 
   belongs_to :service
