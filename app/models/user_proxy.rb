@@ -1,5 +1,6 @@
 class UserProxy 
   include Mongoid::Document
+  validates_uniqueness_of :uid, scope: [ :service_id ]
 
   field :uid, type: 'String'
   field :token, type: 'String'

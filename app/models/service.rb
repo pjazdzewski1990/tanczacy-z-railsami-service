@@ -1,5 +1,7 @@
 class Service
   include Mongoid::Document
+  validates_uniqueness_of :name
+
   field :name, type: 'String'
   field :website, type: 'String'
   field :priority
