@@ -1,5 +1,6 @@
-class UserProxy < ActiveResource::Base
+class UserProxy 
   include Mongoid::Document
+
   field :uid
   field :token
   field :token_expires_at, type: 'DateTime'

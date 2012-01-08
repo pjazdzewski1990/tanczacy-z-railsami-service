@@ -1,7 +1,6 @@
 class Resource 
   include Mongoid::Document
 
-
   field :title
   field :body
   field :link

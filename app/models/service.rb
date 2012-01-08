@@ -1,4 +1,4 @@
-class Service < ActiveResource::Base
+class Service
   include Mongoid::Document
   field :name
   field :website
