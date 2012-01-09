@@ -61,25 +61,18 @@ class GoogleplusCollector < AbstractCollector
                         order([:published, 'DESC']).
                         first
       
-
       if(latest_resource.nil?)
-        data = @googleplus.get_posts(account,99)
-        data["items"].each do |itm|
-           save_resources(transform_statuses(itm))
-		end
-
+        data = @googleplus.get_posts(account.uid,99)
+        resources = transform_statuses data["items"]
       else
-        data = @googleplus.get_posts(account,99)
-		data["items"].each do |itm|
-		   if(DateTime.parse(latest_resource.published) < DateTime.parse(itm["updated"]))
-		     save_resources(transform_statuses(itm))
+        data = @googleplus.get_posts(account.uid,99)
+        filtered_items = data["items"].delete_if do |itm|
+		      latest_resource.published >= DateTime.parse(itm["updated"])
+        end
+        resources = transform_statuses filtered_items
 		   end
+		   save_resources(resources)
 		end
-      end
-
-      
-      
-    end
 
     accounts
   end
@@ -94,19 +87,24 @@ class GoogleplusCollector < AbstractCollector
     Rails.logger.info "GooglePlus doesn't require token refreshing"
   end 
 
-  def transform_statuses(status)
-    user_proxy = nil
+  def transform_statuses(statuses)
+    statuses.map do |s|
+      transform_status s
+    end
+  end
 
-      resource = @googleplus_service.resources.new
-      resource.body = status["title"]
-      resource.uid = status["actor"]["id"]
-      resource.post_id = status["url"]
+  def transform_status(status)
+    user_proxy = nil
+    resource = @googleplus_service.resources.new
+    resource.body = status["title"]
+    resource.uid = status["actor"]["id"]
+    resource.post_id = status["url"]
 	  resource.published = status["updated"]
 
-      user_proxy ||= UserProxy.where(uid: resource.uid).first
-      resource.user_proxy = user_proxy
+    user_proxy ||= UserProxy.where(uid: resource.uid).first
+    resource.user_proxy = user_proxy
 
-      resource
+    resource
   end
 
 end
