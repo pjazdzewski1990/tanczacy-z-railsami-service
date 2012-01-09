@@ -20,6 +20,7 @@ gem 'mongo'
 gem 'mongoid', '~> 2.3'
 gem 'bson_ext', '~> 1.4'
 gem 'unicron'
+gem 'httpclient'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

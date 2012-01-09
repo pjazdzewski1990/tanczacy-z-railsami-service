@@ -6,7 +6,7 @@ class Resource
   field :link, type: 'String'
   field :published, type: 'DateTime'
   field :uid, type: 'String'
-
+  field :post_id, type: 'String'
   belongs_to :user_proxy
   belongs_to :service
 end
