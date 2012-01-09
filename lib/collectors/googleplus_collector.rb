@@ -80,7 +80,7 @@ class GoogleplusCollector < AbstractCollector
   def initialize(settings)
     super(settings)
     @googleplus_service = Service.where(name: 'googleplus').first
-    @googleplus = Plus.new("AIzaSyARpdDXXm_gJf20TRCGulR2qg7tW2ycaxI","v1")
+    @googleplus = Plus.new(settings[:api_key],"v1")
   end
  
   def refresh_tokens

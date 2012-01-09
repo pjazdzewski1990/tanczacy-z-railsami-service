@@ -11,4 +11,12 @@ facebook_service = Service.new({
   prority: '',
   interval: ''
 })
-facebook_service.save(validate: false)
+facebook_service.save
+
+googleplus_service = Service.new({
+  name: 'googleplus',
+  website: 'http://plus.google.com/',
+  priority: '',
+  interval: ''
+})
+googleplus_service.save
