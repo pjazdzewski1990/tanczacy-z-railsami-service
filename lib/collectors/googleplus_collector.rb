@@ -63,13 +63,13 @@ class GoogleplusCollector < AbstractCollector
       
 
       if(latest_resource.nil?)
-        data = @googleplus.get_posts(account,99)
+        data = @googleplus.get_posts(account.uid,99)
         data["items"].each do |itm|
            save_resources(transform_statuses(itm))
 		end
 
       else
-        data = @googleplus.get_posts(account,99)
+        data = @googleplus.get_posts(account.uid,99)
 		data["items"].each do |itm|
 		   if(DateTime.parse(latest_resource.published) < DateTime.parse(itm["updated"]))
 		     save_resources(transform_statuses(itm))
