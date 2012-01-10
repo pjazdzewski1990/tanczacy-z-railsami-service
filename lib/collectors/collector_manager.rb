@@ -1,6 +1,7 @@
 # Singleton class used to manage collectors
 class CollectorManager
   private_class_method :new 
+  attr_reader :logger
 
   # This method should retrieve accounts which needs to be refreshed
   # for specified collector
@@ -22,7 +23,7 @@ class CollectorManager
         failed_accounts_count = accounts.size - success_accounts.size
 
         if(failed_accounts_count > 0)
-          Rails.logger.error "Failed to fetch resources from #{failed_accounts_count} accounts"
+          logger.error "Failed to fetch resources from #{failed_accounts_count} accounts"
         end
     
         success_accounts.each do |a|
@@ -30,7 +31,8 @@ class CollectorManager
           a.save validate: false
         end
       rescue => e
-        Rails.logger.error "Exception occured during #{collector_name} collecting task: #{e.message} "
+        logger.error "Exception occured during #{collector_name} collecting task: #{e.message}\n" +
+        e.backtrace.to_s
       end
     end
   end
@@ -41,19 +43,21 @@ class CollectorManager
 
   private
   def initialize
+    @logger = Logger.new(COLLECTORS_SETTINGS[:log_file])
     load_collectors 
   end
 
   def load_collectors
     @collectors = Hash.new
-    COLLECTORS_SETTINGS.each do |name, settings|
+    COLLECTORS_SETTINGS[:collectors].each do |name, settings|
+      settings.merge!(logger: logger)
       begin
         collector = get_collector_class name
         @collectors[name] = collector.new settings 
       rescue NameError
-        Rails.logger.error "Missing #{get_collector_class_name name} collector class"
+        logger.error "Missing #{get_collector_class_name name} collector class"
       rescue => e
-        Rails.logger.error "Exception occured during initialization of #{collector.to_s} collector: #{e.message}"
+        logger.error "Exception occured during initialization of #{collector.to_s} collector: #{e.message}"
       end
     end
   end

@@ -2,7 +2,7 @@ require 'abstract_collector.rb'
 
 class FacebookCollector < AbstractCollector
   def collect(accounts)
-    Rails.logger.info "Facebook collect invoked"
+    logger.info "Facebook collect invoked"
 
     accounts.each do |account|
       @fb.set_token account[:token]
@@ -41,7 +41,7 @@ class FacebookCollector < AbstractCollector
   end
  
   def refresh_tokens
-    Rails.logger.info "Facebook doesn't require token refreshing"
+    logger.info "Facebook doesn't require token refreshing"
   end 
 
   def transform_statuses(statuses)

@@ -51,7 +51,7 @@ end
 
 class GoogleplusCollector < AbstractCollector
   def collect(accounts)
-    Rails.logger.info "GooglePlus collect invoked"
+    logger.info "GooglePlus collect invoked"
 
     accounts.each do |account|
 
@@ -84,7 +84,7 @@ class GoogleplusCollector < AbstractCollector
   end
  
   def refresh_tokens
-    Rails.logger.info "GooglePlus doesn't require token refreshing"
+    logger.info "GooglePlus doesn't require token refreshing"
   end 
 
   def transform_statuses(statuses)

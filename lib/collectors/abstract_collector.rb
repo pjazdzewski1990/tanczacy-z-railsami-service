@@ -16,6 +16,7 @@ class AbstractCollector
   # It also provides some helper methods for all collectors
 
   attr_accessor :settings
+  attr_accessor :logger
 
   # It allows to store some context data into database which 
   # will allow to continue work in exact same place during next "collect" 
@@ -27,13 +28,14 @@ class AbstractCollector
 
   def initialize(settings)
     @settings = settings
+    @logger = settings[:logger] 
   end
   
   def save_resources(resources)
     resources.each do |resource|
       resource.save validate: false
 
-      Rails.logger.info(
+      logger.info(
       'Resource: ' +
       resource.published.to_s +
       ' ' +
