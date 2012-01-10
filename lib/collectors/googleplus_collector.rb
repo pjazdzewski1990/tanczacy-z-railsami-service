@@ -67,7 +67,7 @@ class GoogleplusCollector < AbstractCollector
       else
         data = @googleplus.get_posts(account.uid,99)
         filtered_items = data["items"].delete_if do |itm|
-		      (latest_resource.published.to_time + 1.hours).to_datetime >= DateTime.parse(itm["updated"])  # TODO: zrobic cos z tym, bo to brzydki hak
+		      DateTime.parse(DateTime.parse(itm["updated"]).to_s) <= DateTime.parse((latest_resource.published + 1.hour).to_s)
         end
         resources = transform_statuses filtered_items
 		   end
@@ -99,7 +99,7 @@ class GoogleplusCollector < AbstractCollector
     resource.body = status["title"]
     resource.uid = status["actor"]["id"]
     resource.post_id = status["url"]
-	  resource.published = status["updated"]
+	  resource.published = DateTime.parse status["updated"]
 
     user_proxy ||= UserProxy.where(uid: resource.uid).first
     resource.user_proxy = user_proxy
