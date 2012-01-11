@@ -102,6 +102,7 @@ class GoogleplusCollector < AbstractCollector
     resource.uid = status["actor"]["id"]
     resource.post_id = status["url"]
 	  resource.published = Time.parse(status["updated"]).getutc
+    resource.service_name = @googleplus_service.name
 
     user_proxy ||= UserProxy.where(uid: resource.uid).first
     resource.user_proxy = user_proxy

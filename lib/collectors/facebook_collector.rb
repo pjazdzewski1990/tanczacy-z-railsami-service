@@ -52,6 +52,7 @@ class FacebookCollector < AbstractCollector
       resource.body = status[:message]
       resource.uid = status.from[:id]
       resource.published = Time.parse status[:updated_time]
+      resource.service_name = @fb_service.name
 
       user_proxy ||= UserProxy.where(uid: resource.uid).first
       resource.user_proxy = user_proxy

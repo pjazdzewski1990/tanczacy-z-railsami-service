@@ -7,6 +7,8 @@ class Resource
   field :published, type: 'Time'
   field :uid, type: 'String'
   field :post_id, type: 'String'
+  field :service_name, type: 'String'
+
   belongs_to :user_proxy
   belongs_to :service
 
@@ -27,7 +29,7 @@ class Resource
       published: published,
       uid: uid,
       post_id: post_id,
-      service_name: Service.cached_service(service_id).name
+      service_name: service_name
     }
   end
 
