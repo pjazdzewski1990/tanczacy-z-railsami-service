@@ -4,7 +4,7 @@ class Resource
   field :title, type: 'String'
   field :body, type: 'String'
   field :link, type: 'String'
-  field :published, type: 'DateTime'
+  field :published, type: 'Time'
   field :uid, type: 'String'
   field :post_id, type: 'String'
   belongs_to :user_proxy

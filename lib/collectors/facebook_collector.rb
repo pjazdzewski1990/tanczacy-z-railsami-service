@@ -16,7 +16,7 @@ class FacebookCollector < AbstractCollector
       if(latest_resource.nil?)
         @last_status_date = 9000.days.ago.to_s
       else
-        @last_status_date = latest_resource.published.to_time.to_s
+        @last_status_date = latest_resource.published.utc.iso8601
       end
 
       data = @fb.selection.me.statuses.since(@last_status_date).info!
@@ -51,7 +51,7 @@ class FacebookCollector < AbstractCollector
       resource = @fb_service.resources.new
       resource.body = status[:message]
       resource.uid = status.from[:id]
-      resource.published = status[:updated_time]
+      resource.published = Time.parse status[:updated_time]
 
       user_proxy ||= UserProxy.where(uid: resource.uid).first
       resource.user_proxy = user_proxy
