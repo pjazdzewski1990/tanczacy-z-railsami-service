@@ -1,4 +1,6 @@
 TanczacyZRailsamiService::Application.routes.draw do
+  match 'resources/query' => 'resources#query'
+
   resources :resources
 
   resources :services

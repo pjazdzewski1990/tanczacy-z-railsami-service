@@ -98,4 +98,26 @@ class ResourcesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def query 
+    limit = params[:limit].to_i
+    offset = params[:offset].to_i
+    query_params = JSON.parse params[:params]
+
+    @query = Resource.query(query_params)
+    @resources_count = @query.count
+
+    @query = @query.limit(limit).offset(offset).order([:published, 'DESC'])
+    @resources = @query.all
+    
+    response = {
+      resources: @resources, 
+      count: @resources_count, 
+      current_offset: offset
+    }
+
+    respond_to do |format|
+      format.json { render json: response}
+    end
+  end
 end
