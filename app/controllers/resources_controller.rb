@@ -103,12 +103,16 @@ class ResourcesController < ApplicationController
     limit = params[:limit].to_i
     offset = params[:offset].to_i
     query_params = JSON.parse params[:params]
+    if(query_params.nil? || query_params.empty?)
+      @resources_count = 0
+      @resources = Array.new
+    else
+      @query = Resource.query(query_params)
+      @resources_count = @query.count
 
-    @query = Resource.query(query_params)
-    @resources_count = @query.count
-
-    @query = @query.limit(limit).offset(offset).order([:published, 'DESC'])
-    @resources = @query.all
+      @query = @query.limit(limit).offset(offset).order([:published, 'DESC'])
+      @resources = @query.all
+    end
     
     response = {
       resources: @resources, 
