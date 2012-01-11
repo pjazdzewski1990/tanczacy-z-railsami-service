@@ -27,14 +27,14 @@ class Resource
       published: published,
       uid: uid,
       post_id: post_id,
-      service_name: service.name 
+      service_name: Service.cached_service(service_id).name
     }
   end
 
   # Transforms parameters passed through ActiveResource
   # into valid mongo condition
   def self.param_to_condition(param)
-    service = Service.where(name: param['service_name']).first
+    service = Service.cached_service_by_name(param['service_name'])
     condition = [uid: param['uid'].to_s, service_id: service.id]
     if(!param['start_date'].nil?)
       condition[0].merge!( :published.gt => Time.parse(param['start_date']))
