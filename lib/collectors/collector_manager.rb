@@ -15,6 +15,7 @@ class CollectorManager
 
   # Fetches resources for specified collectors
   def collect(collectors)
+    logger.info("[ " + Time.now.to_s + " ]" + " Collect task invoked")
     collectors.each do |collector_name|
       begin
         collector = @collectors[collector_name]
